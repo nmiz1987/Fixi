@@ -6,7 +6,7 @@
         This is an ad unit ID for a banner test ad. Replace with your own banner ad unit id.
         For more information, see https://support.google.com/admob/answer/3052638
     <!- -->
-    <string name="banner_ad_unit_id">ca-app-pub-4888028835585412/4031941010</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 <!--netanel-->
     <!--    4888028835585412/4031941010-->
 <!--    3940256099942544/6300978111-->

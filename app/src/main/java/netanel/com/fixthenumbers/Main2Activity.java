@@ -3,18 +3,25 @@ package netanel.com.fixthenumbers;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
+
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main2Activity extends AppCompatActivity {
     int[][] gameState = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
@@ -32,12 +39,13 @@ public class Main2Activity extends AppCompatActivity {
     boolean startGame = false;
     int counter = 0;
     String counterStr = "Number of tries: ";
-
+    MediaPlayer clickSound;
+    MediaPlayer applauseSound;
 
     public void Shuffle(View view) {
         findViewById(R.id.statusText).setAlpha(0);
         startGame = true;
-        for (int i=0;i<50;i++){
+        for (int i = 0; i < 50; i++) {
             click(findViewById(R.id.imageView0));
             click(findViewById(R.id.imageView1));
             click(findViewById(R.id.imageView2));
@@ -54,9 +62,9 @@ public class Main2Activity extends AppCompatActivity {
             click(findViewById(R.id.imageView13));
             click(findViewById(R.id.imageView14));
             click(findViewById(R.id.imageView15));
-            counter=0;
-            ((TextView) findViewById(R.id.score)).setText(counterStr + "0");
         }
+        counter = 0;
+        ((TextView) findViewById(R.id.score)).setText(counterStr + "0");
     }
 
 
@@ -72,6 +80,7 @@ public class Main2Activity extends AppCompatActivity {
         if (((locRow - locRowOf0 == 1 && locCol - locColOf0 == 0) || (locRow - locRowOf0 == -1 && locCol - locColOf0 == 0)
                 || (locCol - locColOf0 == 1 && locRow - locRowOf0 == 0) || locCol - locColOf0 == -1 && locRow - locRowOf0 == 0)) {
             counter++;
+            clickSound.start();
             //---------------- update arr --------------------------------------------
             tempRow = locRow;
             tempCol = locCol;
@@ -82,9 +91,10 @@ public class Main2Activity extends AppCompatActivity {
             gameState[locRowOf0][locColOf0] = 0; // update location of 0
             gameState[locRow][locCol] = imgSelectedInt; // update location of selected number
             //-----------------------------------------------------------------------
-            updateLocation(view,(ImageView) findViewById(R.id.imageView0)); //update image location on screen
-            if(checkIfWon() && startGame==true){
+            updateLocation(view, (ImageView) findViewById(R.id.imageView0)); //update image location on screen
+            if (checkIfWon() && startGame == true) {
                 findViewById(R.id.statusText).setAlpha(1);
+                applauseSound.start();
             }
 
         }
@@ -92,7 +102,7 @@ public class Main2Activity extends AppCompatActivity {
 
     }
 
-    public boolean checkIfWon(){
+    public boolean checkIfWon() {
         // i for row, j for col
         for (int i = 0; i < gameState.length; i++) {
             for (int j = 0; j < gameState[0].length; j++) {
@@ -124,7 +134,7 @@ public class Main2Activity extends AppCompatActivity {
         image0.setBottom(screenBottomLocSelected);
     }
 
-    public void resetGame(View view){
+    public void resetGame(View view) {
         this.onRestart();
     }
 
@@ -141,19 +151,18 @@ public class Main2Activity extends AppCompatActivity {
     }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        clickSound = MediaPlayer.create(this, R.raw.click);
+        applauseSound = MediaPlayer.create(this, R.raw.applause);
 
         // Load an ad into the AdMob banner view.
         AdView adView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
                 .setRequestAgent("android_studio:ad_template").build();
         adView.loadAd(adRequest);
-
-        // Toasts the test ad message on the screen. Remove this after defining your own ad unit ID.
     }
 
 
@@ -172,6 +181,7 @@ public class Main2Activity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            Toast.makeText(this, "In the future :)", Toast.LENGTH_SHORT).show();
             return true;
         }
 

@@ -12,15 +12,14 @@
         android:layout_height="300dp"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="111dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="111dp"
         android:background="@drawable/table44"
         android:tag="gridID"
         app:columnCount="4"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.47000003"
+        app:layout_constraintTop_toBottomOf="@+id/statusText"
         app:rowCount="4">
 
         <ImageView
@@ -194,7 +193,7 @@
         android:id="@+id/statusText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="61dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="71dp"
         android:alpha="0"
         android:text="You won! Well done!"
@@ -211,15 +210,12 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="50dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridID"
-        app:layout_constraintVertical_bias="0.65999997">
+        app:layout_constraintTop_toBottomOf="@+id/score">
 
         <Button
             android:id="@+id/shuffleB"
@@ -238,9 +234,9 @@
         android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text=" "
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gridID" />
