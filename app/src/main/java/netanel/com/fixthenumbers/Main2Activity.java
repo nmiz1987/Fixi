@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -45,7 +46,11 @@ public class Main2Activity extends AppCompatActivity {
     public void Shuffle(View view) {
         findViewById(R.id.statusText).setAlpha(0);
         startGame = true;
-        for (int i = 0; i < 50; i++) {
+        int random = (int)(Math.random()+10)*31;
+        String randomSTR = Integer.toString(random);
+        Log.i("ramdom: ", randomSTR);
+//        Toast.makeText(this, random,Toast.LENGTH_LONG).show();
+        for (int i = 0; i < random; i++) {
             click(findViewById(R.id.imageView0));
             click(findViewById(R.id.imageView1));
             click(findViewById(R.id.imageView2));
@@ -65,6 +70,7 @@ public class Main2Activity extends AppCompatActivity {
         }
         counter = 0;
         ((TextView) findViewById(R.id.score)).setText(counterStr + "0");
+
     }
 
 
