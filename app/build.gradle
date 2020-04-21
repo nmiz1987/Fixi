@@ -8,8 +8,8 @@ android {
         applicationId "netanel.com.fixthenumbers"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 3
-        versionName '3'
+        versionCode 4
+        versionName 'fresh'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
